@@ -1,0 +1,87 @@
+<script>
+
+    const roll = new Promise((resolve,reject)=>{
+    
+     const roll_no = [101,102,103];
+    
+     setTimeout(()=>{
+    
+        if(roll_no.length>0)
+        {
+           resolve(roll_no);
+        }
+        else{
+           reject("something went wrong");
+        }
+    
+     },2000);
+    
+    
+    });
+    
+    const get_details = (rollno) =>
+    {
+        console.log(rollno);
+
+        return new Promise((resolve,reject)=>{
+    
+        setTimeout((rollno)=>{
+      
+         console.log(`roll no is ${rollno} `);   
+         if(rollno!='')
+         {
+            resolve();
+         }
+         else{
+            reject();
+         }
+    
+        },3000);    
+    
+    
+        });
+    }
+    
+    
+    const gender = () =>{
+    
+          return new Promise((resolve,reject)=>{
+    
+           setTimeout(()=>{
+    
+             console.log("ssadss");
+    
+           },3000);  
+    
+          });
+    }
+    
+    async function promise_await()
+    {
+        try{
+            const prom1 = await roll;
+
+            console.log("after promise in ");
+
+            const prom2 = await get_details(prom1[1]);
+
+            console.log("after promise out ");
+
+            return prom1;
+
+
+        }
+
+        catch(error)
+        {
+           console.log(error);
+         }
+       
+    }
+
+    console.log("before promise");
+    const prom_response = promise_await();
+    prom_response.then((data)=>console.log(data));
+    
+    console.log("after promise");
+    </script>

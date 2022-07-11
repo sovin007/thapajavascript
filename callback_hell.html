@@ -1,0 +1,24 @@
+<script>
+    const roll = [101,102,103];
+    const roll_no = ()=>
+    {
+       setTimeout(function(){
+       console.log(roll);
+
+       setTimeout((rno)=>{
+
+       console.log(`roll no is ${rno} `);
+
+       },2000,roll[1]);
+
+       setTimeout(()=>{
+        console.log("gender is male");
+       },2000);
+
+       },2000);
+    }
+    
+    roll_no();
+    
+    
+    </script>

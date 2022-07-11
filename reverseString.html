@@ -1,0 +1,38 @@
+<html>
+
+<body>
+
+<input type="text" onkeyup="myFunction(this.value)"><br>
+<input type="text" id="pp">
+
+</body>	
+
+
+</html>
+
+
+
+<script>
+
+function myFunction(name)
+{
+  var len = name.length;
+  //alert(len);
+  var i=0;
+  var str='';
+  //alert(name[0]);
+  for(i=len-1;i>=0;i--)
+  {
+    str = str+name[i];
+  }
+  if(str)
+  {
+    document.getElementById("pp").value = str;
+  }
+  
+
+}
+
+
+
+</script>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Netflix Slider</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <style>
+
+    .main-div
+    {
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+
+    }
+
+    .center-div
+    {
+       width:100%; 
+       display:flex;
+       overflow-y: hidden;
+       overflow-x: scroll;
+    }
+
+    img
+    {
+       padding: 20px;
+       border-radius: 30px;;
+    }
+
+    .center-div::-webkit-scrollbar{
+
+        overflow:hidden
+    }
+  </style>  
+</head>
+
+<body>
+
+    <div class="main-div">
+
+        <div class="center-div" id="cendiv">
+
+
+        </div>
+
+    </div>
+
+ <script>
+ 
+    const mydiv = document.getElementById("cendiv");
+    fetch('https://jsonplaceholder.typicode.com/photos?_limit=20').
+    then((response)=> { return response.json() }).then((result)=>
+    {
+       result.map((val)=>{
+
+        var key = val.id;
+        let img = document.createElement("img");
+        img.src = `https://picsum.photos/200/300?random=${key}`;
+        mydiv.appendChild(img);
+
+
+       })
+    }).catch((error)=>console.log(error));
+
+ </script>   
+
+</body>
+ 
+
+
+</html>

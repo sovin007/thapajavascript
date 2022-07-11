@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Corona Update</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Corona Info Table</h2>
+  <p></p>            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Country</th>
+        <th>Country Code</th>
+        <th>TotalConfirmed</th>
+        <th>TotalDeaths</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody id="mytbody">
+    
+    </tbody>
+  </table>
+</div>
+
+
+<div class="w3-container">
+ 
+  <!--<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button>-->
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        
+        <p id="country_id"></p>
+        <p id="country_name"></p>
+        <p id="country_code"></p>
+        <p id="country_slug"></p>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+
+<script>
+
+  let modal  = document.getElementById("id01");
+
+  async function get_data()
+  {
+    try{
+      let row = '',i=1,j=0;
+      const response = await fetch("https://api.covid19api.com/summary");
+      const datas = await response.json();
+      //console.log(datas.Countries);
+      for(let data of datas.Countries)
+      {
+         row = row + "<tr><td>"+i+"</td><td>"+data.Country+"</td><td>"+data.CountryCode+"</td><td>"+data.TotalConfirmed+"</td><td>"+data.TotalDeaths+"</td><td><a href='javascript:void(0)' row-id='"+j+"' onclick='myfunction(this)'>View</a></td></tr>";  
+         i = i +1 ; 
+         j = j +1 ; 
+      }
+      document.getElementById("mytbody").innerHTML = row;
+    }
+        
+    catch(error)
+    {
+        console.log(error);
+    }    
+  }
+
+  get_data();
+
+ function myfunction(dom_obj)
+ {
+  
+  modal.style.display = 'block';
+  let country_id = dom_obj.getAttribute('row-id');
+  
+  fetch('https://api.covid19api.com/summary').then((response)=>{ return response.json() }).then((data)=>{
+    let country_obj = data.Countries[country_id];
+    document.getElementById("country_id").innerHTML = "Country ID:"+country_obj.ID;
+    document.getElementById("country_name").innerHTML = "Country NAME:"+country_obj.Country;
+    document.getElementById("country_code").innerHTML = "Country CODE:"+country_obj.CountryCode;
+    document.getElementById("country_slug").innerHTML = "Country SLUG:"+country_obj.Slug;
+    
+  })
+  .catch((error)=>console.log(error))
+
+ }
+
+</script>
+
+</html>

@@ -1,0 +1,51 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<p class="p" id="p">Mahindra
+
+<p>asasas</p>
+
+</p>
+
+<p class="pp">TATA</p>
+
+<p id="ppp">Scorpio</p>
+
+<div>
+<ul><li>like</li>
+     <li>Support</li>
+     <li>subscribe</li></ul>
+</div>
+<script>
+var child = document.body.children;
+
+console.log(child.length);
+
+console.log(child);
+
+var para = document.createElement("p");
+
+var paratext = document.createTextNode("my custom paragraph");
+
+para.appendChild(paratext);
+
+document.body.appendChild(para);
+
+var list = document.querySelector("ul");
+console.log(list.firstChild);
+console.log(list.lastChild);
+console.log(list.parentNode.parentNoden);
+
+var sibling = document.getElementById("p").nextElementSibling.innerHTML;
+
+console.log(sibling);
+
+</script>
+
+</body>
+
+</html>
+

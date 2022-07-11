@@ -1,0 +1,331 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<div class="container">
+    <div class="header">
+     <h2>Registration Form</h2>
+    </div>
+
+      <form class="form">
+
+        <div class="form-control">
+            <label>Username</label>
+            <input  type="text" id="username" placeholder="Enter your name" autocomplete="off">
+            <i class="fa fa-check-square" id="sqr1" aria-hidden="true"></i>
+            <i class="fa fa-exclamation-circle" id="exc1" aria-hidden="true"></i>
+            <small id="sm1" class="errormsg"></small>
+        </div>
+
+        <div class="form-control">
+          <label>Email</label>
+          <input type="text" id="email" placeholder="Enter your email" autocomplete="off">
+          <i class="fa fa-check-square" id="sqr2" aria-hidden="true"></i>
+          <i class="fa fa-exclamation-circle" id="exc2" aria-hidden="true"></i>
+          <small id="sm2" class="errormsg"></small>
+      </div>
+
+      <div class="form-control">
+        <label>Phone Number</label>
+        <input  type="text" id="phone" placeholder="Enter your phone" autocomplete="off" onkeyup="noCharacters(event,this.value)">
+        <i class="fa fa-check-square" id="sqr3" aria-hidden="true"></i>
+        <i class="fa fa-exclamation-circle" id="exc3" aria-hidden="true"></i>
+        <small id="sm3" class="errormsg"></small>
+      </div>
+
+      <div class="form-control">
+        <label>Password</label>
+        <input  type="text" id="password" placeholder="Enter your password" autocomplete="off">
+        <i class="fa fa-check-square" id="sqr4" aria-hidden="true"></i>
+        <i class="fa fa-exclamation-circle" id="exc4" aria-hidden="true"></i>
+        <small id="sm4" class="errormsg"></small>
+      </div>
+
+      <div class="form-control">
+        <label>Confirm Password</label>
+        <input  type="text" id="confirm_password" placeholder="Enter your confrm password" autocomplete="off">
+        <i class="fa fa-check-square" id="sqr5" aria-hidden="true"></i>
+        <i class="fa fa-exclamation-circle" id="exc5" aria-hidden="true"></i>
+        <small id="sm5" class="errormsg"></small>
+    </div>
+
+      <input  value="submit" class="btn" id="submit" onclick="submitData()">
+
+      </form>  
+    
+    
+
+</div>
+
+<script>
+ 
+ function submitData()
+ {
+  
+  
+   let username = document.getElementById("username").value;
+   let email = document.getElementById("email").value;
+   let phone = document.getElementById("phone").value;
+   let password = document.getElementById("password").value;
+   let confirm_password = document.getElementById("confirm_password").value;
+  
+   if(username=='' && email=='' && phone=='' && password=='' && confirm_password=='')
+   {
+     
+       //document.getElementsByTagName("small").className="error";
+       //document.getElementsByTagName("input").className="error";
+       let icons = document.getElementsByClassName("fa-exclamation-circle");
+       for(let i=0;i<icons.length;i++)
+       {
+         icons[i].style.display="block";
+         
+       }
+
+       let inputs = document.getElementsByTagName("input");
+       for(let i=0;i<inputs.length-1;i++)
+       {
+          //console.log(inputs[i].getAttribute("type"));
+         if(inputs[i].getAttribute("type")!='')
+         {
+          inputs[i].className="error";
+          //console.log(inputs[i]);
+          inputs[i].className="error";
+          
+         }
+        
+       }
+       
+       return false;
+  } 
+
+
+
+   if(username!='')
+  {
+    
+   
+       
+        if(username.charAt(0)==' ')
+        {
+          
+          document.getElementById("sm1").innerHTML = "spaces are not allowed";
+         document.getElementById("exc1").style.display = "block";
+         document.getElementById("username").className = "error";
+         return false;
+        }
+    
+     
+    if(username.length<3)
+    {
+      document.getElementById("sm1").innerHTML = "minimum 3 charaters allowed";
+      document.getElementById("exc1").style.display = "block";
+      document.getElementById("username").className = "error";
+    }
+   
+    if(username.length>=3)
+    {
+      document.getElementById("sm1").innerHTML = " ";
+      document.getElementById("exc1").style.display = "none"; 
+      document.getElementById("username").className = "success";
+      document.getElementById("sqr1").style.display = "block";
+    }
+   
+  } 
+
+  if(username=='')
+  {
+        document.getElementById("sm1").innerHTML = "username is required";
+         document.getElementById("exc1").style.display = "block";
+         document.getElementById("username").className = "error";
+  } 
+
+  if(email=='')
+  {
+        document.getElementById("sm2").innerHTML = "email is required";
+         document.getElementById("exc2").style.display = "block";
+         document.getElementById("email").className = "error";
+  } 
+
+  if(phone=='')
+  {
+        document.getElementById("sm3").innerHTML = "phone is required";
+         document.getElementById("exc3").style.display = "block";
+         document.getElementById("phone").className = "error";
+  } 
+
+  if(password=='')
+  {
+        document.getElementById("sm4").innerHTML = "password is required";
+         document.getElementById("exc4").style.display = "block";
+         document.getElementById("password").className = "error";
+  } 
+
+  if(confirm_password=='')
+  {
+        document.getElementById("sm5").innerHTML = "confirm_password is required";
+         document.getElementById("exc5").style.display = "block";
+         document.getElementById("confirm_password").className = "error";
+  } 
+
+   if(email!='')
+   {
+      let flag =0;
+
+      for(let i=0;i<email.length;i++)
+      {
+        if(email[i]=='@')
+        {
+          flag=1;
+        }
+      }
+
+      if(flag==0)
+      {
+        document.getElementById("sm2").innerHTML = "email not valid";
+      document.getElementById("exc2").style.display = "block";
+      document.getElementById("email").className = "error";
+      }
+      
+       else if(email[email.length-1]=='.')
+        {
+          document.getElementById("sm2").innerHTML = "email not valid";
+      document.getElementById("exc2").style.display = "block";
+      document.getElementById("email").className = "error";
+        }
+
+        else{
+          document.getElementById("sm2").innerHTML = " ";
+      document.getElementById("sqr2").style.display = "none";
+      document.getElementById("email").className = "success";
+        }
+      
+   } 
+
+
+   if(phone!='')
+   {
+     
+     if(phone.length<10)
+     {
+      document.getElementById("sm3").innerHTML = "phone should be 10 digits";
+      document.getElementById("exc3").style.display = "block";
+      document.getElementById("phone").className = "error";
+
+      return false;
+     }
+     
+   
+     
+     if(phone.length==10)
+     {
+      document.getElementById("sm3").innerHTML = "";
+      document.getElementById("exc3").style.display = "none";
+      document.getElementById("phone").className = "success";
+      document.getElementById("sqr3").style.display = "block";
+      //return true;
+     }
+
+     if(phone.length>10)
+     {
+      document.getElementById("sm3").innerHTML = "phone should be 10 digits";
+      document.getElementById("exc3").style.display = "block";
+      document.getElementById("phone").className = "error";
+
+      return false;
+     }
+     
+   } 
+
+   if(password!='')
+   {
+     
+     if(password.length<5)
+     {
+      document.getElementById("sm4").innerHTML = "password should be 5";
+      document.getElementById("exc4").style.display = "block";
+      document.getElementById("password").className = "error";
+
+      return false;
+     }
+
+     if(password.length>=5)
+     {
+      document.getElementById("sm4").innerHTML = "";
+      document.getElementById("exc4").style.display = "none";
+      document.getElementById("password").className = "success";
+      document.getElementById("sqr4").style.display = "block";
+     }
+     
+   }
+
+   if(confirm_password!='')
+   {
+     
+     if(password!=confirm_password)
+     {
+      document.getElementById("sm5").innerHTML = "password should be match";
+      document.getElementById("exc5").style.display = "block";
+      document.getElementById("confirm_password").className = "error";
+
+      return false;
+     }
+
+     if(password==confirm_password)
+     {
+      document.getElementById("sm5").innerHTML = "";
+      document.getElementById("exc5").style.display = "none";
+      document.getElementById("confirm_password").className = "success";
+      document.getElementById("sqr5").style.display = "block";
+      
+     }
+     
+   }
+
+
+   if(username!='' && email!='' && phone!='' && password!='' && confirm_password!='')
+   {
+    window.location="response.html";
+   }
+   
+ }
+
+
+ function noCharacters(event,value)
+   {
+   
+    let a = event.which;
+    console.log(a);
+    //return false;
+    if(!(a>=48 && a<=57))
+    {
+      if(a==8||a==9||a==13)
+      {
+        
+      }
+      else{
+        let str = value.substr(0,value.length-1);
+       alert("allow only numbers");
+      document.getElementById("phone").value = str;
+      
+      return false;
+      }
+      
+    }
+    
+   
+
+   }
+
+
+
+
+
+</script>  
+
+
+</html>

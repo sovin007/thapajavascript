@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<link href="style.css">
+<meta title="">
+</head>
+
+<body>
+
+<p>this is paragraph</p>
+
+<h1>this is heading</h1>
+
+<button onclick="myfunction()">Click Me</button>
+
+<div id="mydiv">
+   <p>This is first paragraph</p>
+   <h1>First Heading</h1>
+
+</div>	
+
+<script>
+
+function myfunction()
+{
+
+	var whole = document.body.innerHTML;
+
+	var mydiv = document.getElementById("mydiv").innerHTML;
+
+	document.body.innerHTML = mydiv;
+
+	window.print();
+
+}
+
+</script>	
+
+</body>
+
+
+</html>

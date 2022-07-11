@@ -1,0 +1,32 @@
+<h1>Button to show current time</h1>
+<button type="button" onclick="startTime()">Start Time</button>
+<button type="button" onclick="stopTime()">Stop Time</button>
+<h1>Time is:<span id="span"></span></h1>
+
+<script>
+var gettime = '';
+
+function stopTime()
+{
+	clearInterval(gettime);
+}
+
+
+function startTime()
+{
+ gettime =	setInterval(time,1000)
+
+}
+
+function time()
+{
+
+    var dt = new Date();
+    //var time  = dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds();
+    var time = dt.toLocaleTimeString();
+    document.getElementById("span").innerHTML = time
+
+}
+
+
+</script>

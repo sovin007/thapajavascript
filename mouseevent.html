@@ -1,0 +1,22 @@
+<script>
+
+let screensize = window.innerWidth;	
+let mousepoint = 0;
+let currentlocation = 0;
+let fraction = 0;
+
+const mouseMove = (event) =>
+{
+	//console.log(`x value is = ${event.clientX} and y value is = ${event.clientY} `);
+	currentlocation = event.clientX;
+	fraction = currentlocation/screensize;
+	console.log(fraction);
+}
+
+
+
+window.addEventListener("mousemove",mouseMove);
+
+
+
+</script>

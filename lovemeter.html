@@ -1,0 +1,68 @@
+<html>
+<head>
+
+</head>
+
+
+<body>
+<input type="text" id="name1">
+
+<input type="text" id="name2">
+<br><br>
+<button type="button" id="mybutton" onclick="myfunction()">Click</button>
+<br><br>
+<input type="text" id="result">
+<script>
+function myfunction()
+{
+ var name1 = document.getElementById('name1').value;
+ var name2 = document.getElementById('name2').value;
+ if(name1!='' && name2!='')
+ {
+   if(name1.length<3 && name2.length<3)
+   {
+     alert('name1 and name2 length less than 3');
+     document.getElementById('name1').value = '';
+     document.getElementById('name2').value = '';
+     return false;
+   }
+   else if(name1.length<3 && name2.length>2)
+   {
+   	 document.getElementById('name1').value = ''; 
+     alert('name1  length less than 3');
+     return false;
+   }
+
+   else if(name1.length>2 && name2.length<3)
+   {
+   	 document.getElementById('name2').value = ''; 
+     alert('name2  length less than 3');
+     return false;
+   }
+   	
+   var randomno = Math.floor((Math.random())*100);
+   document.getElementById('result').value =  randomno;
+   
+ }
+
+ else if(name1=='' && name2!='')
+ {
+
+   alert('enter name1');
+ }
+
+ else if(name1!='' && name2=='')
+ {
+   alert('enter name2 ');
+ }
+
+ else
+ {
+ 	alert('both name should be given first');
+ }
+
+}
+</script>
+
+</body>
+</html>
